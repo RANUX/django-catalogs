@@ -1,0 +1,12 @@
+{% extends "catalogs/base.html" %}
+{% block content %}
+    {% for item in catalog_items %}
+        <ul>
+            {% if item.get_absolute_url %}
+                <li><a href="{{item.get_absolute_url}}">{{item.name}}</a></li>
+            {% else %}
+                <li><a href="{{item.slug}}">{{item.name}}</a></li>
+            {% endif %}
+        </ul>
+    {% endfor %}
+{% endblock %}
