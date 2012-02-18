@@ -1,7 +1,4 @@
 # -*- coding: UTF-8 -*-
-"""
-Django foreign key tree
-"""
 
 __author__ = 'Razzhivin Alexander'
 __email__ = 'admin@httpbots.com'

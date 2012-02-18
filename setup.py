@@ -2,7 +2,7 @@
 from setuptools import setup, find_packages
 import sys
 
-fktree = __import__('catalogs')
+catalogs = __import__('catalogs')
 
 
 README_FILE = 'README.rst'
@@ -19,15 +19,15 @@ except IOError, err:
                      "``long_description`` (%s)\n" % README_FILE)
     sys.exit(1)
 
-setup(name='django-fktree',
-    version=fktree.__version__,
-    description='Django tree based on foreign key',
+setup(name='django-catalogs',
+    version=catalogs.__version__,
+    description='Django based simple catalog structure for site',
     long_description=long_description,
     zip_safe=False,
     author='Razzhivin Alexander',
     author_email='admin@httpbots.com',
-    url='https://github.com/RANUX/django-fktree',
-    download_url='https://github.com/RANUX/django-fktree/downloads',
+    url='https://github.com/RANUX/django-catalogs',
+    download_url='https://github.com/RANUX/django-catalogs/downloads',
     packages = find_packages(),
     include_package_data=True,
     install_requires = [
