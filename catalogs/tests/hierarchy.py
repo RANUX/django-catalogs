@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from catalogs.conf.settings import  PATH_SEPARATOR
 from catalogs.models import CatalogItem
-from catalogs.tests.models import Post, Page
+
 
 __author__ = 'Razzhivin Alexander'
 __email__ = 'admin@httpbots.com'
