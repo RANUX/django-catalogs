@@ -28,7 +28,7 @@ setup(name='django-catalogs',
     author_email='admin@httpbots.com',
     url='https://github.com/RANUX/django-catalogs',
     download_url='https://github.com/RANUX/django-catalogs/downloads',
-    packages = find_packages(),
+    packages = find_packages(exclude=['test_project',]),
     include_package_data=True,
     install_requires = [
         'django>=1.3',
