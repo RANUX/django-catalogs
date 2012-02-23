@@ -7,8 +7,8 @@ from optparse import OptionParser
 from django.conf import settings
 
 if not settings.configured:
-    PROJECT_DIR, PROJECT_MODULE_NAME = os.path.split(
-        os.path.dirname(os.path.realpath(__file__))
+    PROJECT_DIR, MODULE_NAME = os.path.split(
+        (os.path.realpath(__file__))
     )
 
     settings.configure(
@@ -39,13 +39,12 @@ if not settings.configured:
             'django.template.loaders.app_directories.Loader',
         ),
         TEMPLATE_DIRS = (
-            os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'tests', 'templates'),
+            os.path.join(PROJECT_DIR, 'catalogs', 'tests', 'templates'),
         ),
         INSTALLED_APPS=[
             'django.contrib.auth',
             'django.contrib.contenttypes',
             'catalogs',
-            'catalogs.tests',
         ],
         DEBUG=False,
     )
