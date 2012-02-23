@@ -1,11 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
+import os
 import sys
 from optparse import OptionParser
 
 from django.conf import settings
 
 if not settings.configured:
+    PROJECT_DIR, PROJECT_MODULE_NAME = os.path.split(
+        os.path.dirname(os.path.realpath(__file__))
+    )
+
     settings.configure(
         DATABASE_ENGINE='sqlite3',
         DATABASES={
@@ -32,6 +37,9 @@ if not settings.configured:
         TEMPLATE_LOADERS = (
             'django.template.loaders.filesystem.Loader',
             'django.template.loaders.app_directories.Loader',
+        ),
+        TEMPLATE_DIRS = (
+            os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'tests', 'templates'),
         ),
         INSTALLED_APPS=[
             'django.contrib.auth',

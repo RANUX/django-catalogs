@@ -62,16 +62,3 @@ class HierarchyTest(TestCase):
         child = CatalogItem.objects.create(parent=item)
         self.assertTrue(item.has_children())
 
-#
-#    def test_get_polymorphic_children(self):
-#        item = CatalogItem.objects.get(pk=6)
-#        post_item = Post.objects.create(parent=item, name="post", slug="post")
-#        page_item = Page.objects.create(parent=item, name="page", slug="page")
-#        items=CatalogItem.objects.filter(parent=item).select_subclasses()
-#        self.assertEquals(set(items), set([post_item, page_item]))
-#
-#        # assert child methods called correctly
-#        self.assertEquals(reverse('page_detail', kwargs={'slug': items[0].slug}), items[0].get_absolute_url())
-#        self.assertEquals(reverse('post_detail', kwargs={'slug': items[1].slug}), items[1].get_absolute_url())
-#
-#
