@@ -1,7 +1,9 @@
 {% extends "base.html" %}
+{% load catalog_tags %}
 
 {% block title %}{{ flatpage.title }}{% endblock %}
 
 {% block content %}
 {{ flatpage.content }}
+{% add_to_catalog_form flatpage %}
 {% endblock %}

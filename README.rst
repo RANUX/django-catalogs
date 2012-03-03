@@ -32,4 +32,5 @@ Open http://127.0.0.1:8000/catalog/root/ and try to follow links. That's all:)
 
 Future plans
 ===============================================
-Localization
+  - Localization
+  - Other application models should be independent from CatalogItem model.

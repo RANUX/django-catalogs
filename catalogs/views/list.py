@@ -23,6 +23,6 @@ class CatalogListView(TemplateView):
             slug = filter(None, url.split("/"))[-1]  # filter removes empty strings
             catalog_item = CatalogItem.objects.get(slug=slug, deleted=False)
 
-        catalog_items = CatalogItem.objects.filter(parent=catalog_item, deleted=False).select_subclasses()
+        catalog_items = CatalogItem.objects.filter(parent=catalog_item, deleted=False)
         return self.render_to_response({'catalog_items': catalog_items})
 

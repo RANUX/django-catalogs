@@ -2,11 +2,7 @@
 {% block content %}
     {% for item in catalog_items %}
         <ul>
-            {% if item.get_absolute_url %}
-                <li><a href="{{item.get_absolute_url}}">{{item.name}}</a></li>
-            {% else %}
-                <li><a href="{{item.slug}}">{{item.name}}</a></li>
-            {% endif %}
+            <li><a href="{{item.get_absolute_url}}">{{item.name}}</a></li>
         </ul>
     {% endfor %}
 {% endblock %}

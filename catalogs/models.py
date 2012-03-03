@@ -1,8 +1,10 @@
 # -*- coding: UTF-8 -*-
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from easy_thumbnails.fields import ThumbnailerImageField
-from model_utils.managers import InheritanceManager
 from conf.settings import ICON_WIDTH, ICON_HEIGHT, ICON_CROP_TYPE, ICON_PATH
 from conf.settings import PATH_SEPARATOR
 from conf.settings import  LANGUAGES
@@ -12,6 +14,16 @@ __author__ = 'Razzhivin Alexander'
 __email__ = 'admin@httpbots.com'
 
 
+class CatalogItemManager(models.Manager):
+    def get_object_catalog_item(self, obj):
+        object_type = ContentType.objects.get_for_model(obj)
+        try:
+            catalog_item = self.get(content_type__pk=object_type.id, object_id=obj.id)
+        except ObjectDoesNotExist:
+            return None
+        return catalog_item
+
+
 class CatalogItem(models.Model):
 
     ICON_SETTINGS = {
@@ -19,9 +31,14 @@ class CatalogItem(models.Model):
         'crop': ICON_CROP_TYPE
     }
 
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey()
+
     name = models.CharField(_('name'), max_length=255)
     slug = models.SlugField(unique=True)
     deleted = models.BooleanField(_('deleted'), default=False)
+    url = models.CharField(_('url'), max_length=255, blank=True)
 
     language_code = models.CharField(_('language'), max_length=8, choices=LANGUAGES, default=dict(LANGUAGES).keys()[0])
 
@@ -36,7 +53,7 @@ class CatalogItem(models.Model):
         resize_source=ICON_SETTINGS
     )
 
-    objects = InheritanceManager()
+    objects = CatalogItemManager()
 
     class Meta(object):
         ordering = ('path',)
@@ -71,4 +88,4 @@ class CatalogItem(models.Model):
         return self.last_child is not None
 
     def get_absolute_url(self):
-        return None
+        return self.url or self.slug
