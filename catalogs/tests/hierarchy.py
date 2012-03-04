@@ -1,4 +1,5 @@
 # -*- coding: UTF-8 -*-
+from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from catalogs.conf.settings import  PATH_SEPARATOR
@@ -11,6 +12,7 @@ __email__ = 'admin@httpbots.com'
 
 class HierarchyTest(TestCase):
     fixtures = ['catalogs']
+
 
     def test_unicode(self):
         item = CatalogItem.objects.get(pk=7)

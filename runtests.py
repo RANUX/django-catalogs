@@ -3,51 +3,10 @@
 import os
 import sys
 from optparse import OptionParser
+from django.core.management import setup_environ
 
-from django.conf import settings
-
-if not settings.configured:
-    PROJECT_DIR, MODULE_NAME = os.path.split(
-        (os.path.realpath(__file__))
-    )
-
-    settings.configure(
-        DATABASE_ENGINE='sqlite3',
-        DATABASES={
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                },
-            },
-        ROOT_URLCONF = 'catalogs.urls',
-        NOSE_ARGS = ['--nocapture',
-                     '--all-modules',
-                     '--nologcapture',
-                     '--verbosity=2',
-                     '--with-coverage',
-                     '--cover-package=catalogs',
-#                     '--cover-html',
-                     #             '--with-doctest',
-                     'catalogs'
-                     #             '--cover-erase',
-                     #             '--cover-tests',
-        ],
-        MIDDLEWARE_CLASSES = (
-            'django.middleware.common.CommonMiddleware',
-        ),
-        TEMPLATE_LOADERS = (
-            'django.template.loaders.filesystem.Loader',
-            'django.template.loaders.app_directories.Loader',
-        ),
-        TEMPLATE_DIRS = (
-            os.path.join(PROJECT_DIR, 'catalogs', 'tests', 'templates'),
-        ),
-        INSTALLED_APPS=[
-            'django.contrib.auth',
-            'django.contrib.contenttypes',
-            'catalogs',
-        ],
-        DEBUG=False,
-    )
+from test_project import settings
+setup_environ(settings)
 
 
 from django_nose import NoseTestSuiteRunner

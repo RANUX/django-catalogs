@@ -33,7 +33,7 @@ def add_catalog_item(request, app_label, module_name, pk, template_name='catalog
 
     obj = get_object_or_404(model, pk=pk)
     catalog_item = CatalogItem.objects.get_object_catalog_item(obj)
-    form = CatalogItemForm(request.POST, instance=catalog_item)
+    form = CatalogItemForm(request.POST, request.FILES, instance=catalog_item)
 
     if form.is_valid():
         form.save(request, obj)

@@ -9,10 +9,24 @@ sys.path.append(os.path.join(PROJECT_DIR))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+THUMBNAIL_DEBUG = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
+
+NOSE_ARGS = ['--nocapture',
+             '--all-modules',
+             '--nologcapture',
+             '--verbosity=2',
+             '--with-coverage',
+             '--cover-package=catalogs',
+             #                     '--cover-html',
+             #             '--with-doctest',
+             'catalogs'
+             #             '--cover-erase',
+             #             '--cover-tests',
+]
 
 MANAGERS = ADMINS
 
@@ -52,12 +66,12 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -136,6 +150,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.flatpages',
+    'easy_thumbnails',
     'catalogs',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',

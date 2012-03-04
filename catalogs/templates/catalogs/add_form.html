@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if form %}
-    <form method="post" action="{{ form_url }}" class="add-to-catalog">
+    <form enctype="multipart/form-data" method="post" action="{{ form_url }}" class="add-to-catalog">
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}"/>
         {{ form.as_p }}

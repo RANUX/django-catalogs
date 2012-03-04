@@ -1,8 +1,20 @@
 {% extends "catalogs/base.html" %}
 {% block content %}
+<ul class="thumbnails">
     {% for item in catalog_items %}
-        <ul>
-            <li><a href="{{item.get_absolute_url}}">{{item.name}}</a></li>
-        </ul>
+    <li class="span3">
+        <div class="thumbnail">
+            {% if item.icon %}
+            <a href="{{item.get_absolute_url}}" class="thumbnail">
+                <img src="{{ item.icon.url }}" alt="{{item.name}}">
+            </a>
+            {% endif %}
+            <div class="caption">
+                <a href="{{item.get_absolute_url}}"><h5>{{item.name}}</h5></a>
+                <p>{{ item.description }}</p>
+            </div>
+        </div>
+    </li>
     {% endfor %}
+</ul>
 {% endblock %}
