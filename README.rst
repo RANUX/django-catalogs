@@ -1,6 +1,7 @@
 About
 ===============================================
-django-catalogs - simple catalog structure for your site
+django-catalogs - simple catalog structure for your site.
+You can add any object to catalog structure.
 
 Dependencies
 ===============================================
@@ -23,14 +24,13 @@ test_project shows how to bind your application to catalog::
 
 Open http://127.0.0.1:8000/admin
 
-    - add catalog item with slug "root"
-    - add flat page catalog item to parent root catalog with slug "page"
-    - add flat page with url /page/
+    - create catalog item with name and slug "root"
+    - create flat page. For example with "/" url
 
-Open http://127.0.0.1:8000/catalog/root/ and try to follow links. That's all:)
+Open http://127.0.0.1:8000/ and add index page to catalog
+Open http://127.0.0.1:8000/catalogs/, folow links. That's all :)
 
 
 Future plans
 ===============================================
   - Localization
-  - Other application models should be independent from CatalogItem model.
