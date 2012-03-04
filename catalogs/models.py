@@ -77,7 +77,6 @@ class CatalogItem(models.Model):
         return self.path.split(PATH_SEPARATOR)[0]
 
     def save(self, *args, **kwargs):
-        self.set_content_type(kwargs.get('content_type'))
         super(CatalogItem, self).save(*args, **kwargs)
         self.set_object_id()
 
@@ -91,10 +90,6 @@ class CatalogItem(models.Model):
         self.path = path
         CatalogItem.objects.filter(slug=self.slug).update(path=self.path)
         self.store_icon_by_url()
-
-    def set_content_type(self, content_type):
-        if not content_type:
-            self.content_type = ContentType.objects.get(app_label=self._meta.app_label, model=self._meta.module_name)
 
     def set_object_id(self):
         if not self.object_id:

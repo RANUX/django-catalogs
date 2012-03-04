@@ -3,5 +3,6 @@ easy-thumbnails
 
 # for tests
 -e git+https://github.com/nose-devs/nose.git#egg=nose
+-e git+https://github.com/pydevua/django-testrecorder.git#egg=django-testrecorder
 django-nose
 coverage

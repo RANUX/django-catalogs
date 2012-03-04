@@ -11,7 +11,10 @@ __email__ = 'admin@httpbots.com'
 
 
 class HierarchyTest(TestCase):
-    fixtures = ['catalogs']
+    fixtures = ['catalogs_catalogs']
+
+    def setUp(self):
+        self.content_type = ContentType.objects.get(name='catalog')
 
 
     def test_unicode(self):
@@ -38,14 +41,14 @@ class HierarchyTest(TestCase):
         self.assertEqual(2, item.depth)
 
     def test_build_root_path(self):
-        item = CatalogItem()
+        item = CatalogItem(content_type=self.content_type)
         self.assert_empty_path(item)
         item.save()
         self.assertEquals(item.slug, item.path)
 
     def test_build_child_path(self):
         item = CatalogItem.objects.get(pk=6)
-        child_item = CatalogItem(parent=item)
+        child_item = CatalogItem(content_type=self.content_type, parent=item)
         self.assert_empty_path(child_item)
         child_item.save()
 
@@ -58,9 +61,9 @@ class HierarchyTest(TestCase):
         self.assertEquals('', item.path)
 
     def test_has_children(self):
-        item = CatalogItem.objects.create(name="eight", slug="eight")
+        item = CatalogItem.objects.create(content_type=self.content_type, name="eight", slug="eight")
         self.assertFalse(item.has_children())
 
-        child = CatalogItem.objects.create(parent=item)
+        child = CatalogItem.objects.create(content_type=self.content_type, parent=item)
         self.assertTrue(item.has_children())
 

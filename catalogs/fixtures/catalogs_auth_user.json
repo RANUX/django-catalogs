@@ -1,0 +1,20 @@
+[
+    {
+        "pk":1,
+        "model":"auth.user",
+        "fields":{
+            "username":"admin",
+            "first_name":"",
+            "last_name":"",
+            "is_active":true,
+            "is_superuser":true,
+            "is_staff":true,
+            "last_login":"2012-03-04 08:51:35",
+            "groups":[],
+            "user_permissions":[],
+            "password":"sha1$ac991$da9777f56ee33fc9c72b3ab61995b9398be1ea50",
+            "email":"a@a.ru",
+            "date_joined":"2012-03-04 07:59:31"
+        }
+    }
+]

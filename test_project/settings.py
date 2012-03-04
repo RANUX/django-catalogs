@@ -10,6 +10,7 @@ sys.path.append(os.path.join(PROJECT_DIR))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 THUMBNAIL_DEBUG = True
+TEST_RECORDER = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -93,6 +94,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_DIR, PROJECT_MODULE_NAME, 'static'),
 )
 
 # List of finder classes that know how to find static files in
@@ -155,6 +157,24 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+if TEST_RECORDER:
+    RECORDER_FIXTURES = [
+        'catalogs_auth_user.json',
+        'catalogs_catalogs.json',
+        'catalogs_flatpages.json',
+    ]
+    RECORDER_IGNORE = (
+        '^/admin.*',
+        )
+    RECORDER_AUTOLOGIN = True
+    RECORDER_AUTH = {
+        'username': 'admin',
+        'password': '12345'
+    }
+    RECORDER_INIT_ON_START = False
+    INSTALLED_APPS += ('testrecorder',)
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -1,7 +1,9 @@
 # -*- coding: UTF-8 -*-
+from os import path
 from django.core.urlresolvers import reverse
 from django.test import TestCase
 from catalogs.models import CatalogItem
+from test_project import settings
 
 
 __author__ = 'Razzhivin Alexander'
@@ -10,7 +12,13 @@ __email__ = 'admin@httpbots.com'
 
 
 class HierarchyTest(TestCase):
-    fixtures = ['catalogs']
+    fixtures = ["catalogs_auth_user.json", "catalogs_catalogs.json", "catalogs_flatpages.json"]
+
+    def setUp(self):
+        self.auth = {
+            "username": u"admin",
+            "password": u"12345"
+        }
 
     def test_get_root_catalog(self):
         catalog = CatalogItem.objects.get(pk=1)
@@ -39,3 +47,31 @@ class HierarchyTest(TestCase):
 
         response = self.client.get(url)
         self.assertRedirects(response, expected_url)
+
+    def test_bind_catalog(self):
+        self.client.login(**self.auth)
+
+        data = {
+            "description": u"index page",
+            "parent": u"1",
+            "url": u"/",
+            "icon_url": u"",
+            "next": u"http://127.0.0.1:8000/",
+            "language_code": u"ru",
+            "slug": u"index",
+            "name": u"index",
+            "icon": open(path.join(settings.STATICFILES_DIRS[0], "img/open_folder_gray.png"), "rb")
+        }
+        befor_catalog_items_count = CatalogItem.objects.count()
+        url = reverse("catalogs_add_item", kwargs={"module_name": "flatpage", "pk": "1", "app_label": "flatpages"})
+        response = self.client.post(url, data)
+        self.assertRedirects(response, "http://127.0.0.1:8000/")
+        self.assertEquals(befor_catalog_items_count+1, CatalogItem.objects.count())
+
+        response = self.client.get("/")
+        self.failUnlessEqual(response.status_code, 200)
+
+        self.assertContains(response, data['name'])
+        self.assertContains(response, data['slug'])
+        self.assertContains(response, data['description'])
+
