@@ -39,9 +39,9 @@ class CatalogItem(models.Model):
     content_object = generic.GenericForeignKey()
 
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), unique=True)
+    slug = models.SlugField(_('slug'), unique=True, max_length=150)
     hidden = models.BooleanField(_('hidden'), default=False)
-    url = models.CharField(_('url'), max_length=255, blank=True)
+    url = models.CharField(_('redirect url'), max_length=255, blank=True)
     description = models.TextField(_('description'), blank=True)
 
     language_code = models.CharField(_('language'), max_length=8, choices=LANGUAGES, default=dict(LANGUAGES).keys()[0])

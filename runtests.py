@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-import os
 import sys
 from optparse import OptionParser
 from django.core.management import setup_environ

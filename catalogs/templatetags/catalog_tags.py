@@ -27,7 +27,6 @@ def add_to_catalog_form(context, obj):
         if not catalog_item:
             data={
                 'language_code': context['request'].LANGUAGE_CODE,
-                'url': context['request'].get_full_path()
             }
 
         form = CatalogItemForm(

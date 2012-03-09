@@ -10,15 +10,14 @@ __email__ = 'admin@httpbots.com'
 
 class CatalogItemForm(forms.ModelForm):
 
-    url = forms.CharField(widget=forms.HiddenInput())
     language_code = forms.CharField(widget=forms.HiddenInput())
 
     class Meta:
         model = CatalogItem
         fields = (
+            'url',
             'name',
             'slug',
-            'url',
             'description',
             'language_code',
             'icon',

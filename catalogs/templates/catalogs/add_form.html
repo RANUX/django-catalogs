@@ -1,11 +1,16 @@
 {% load i18n %}
 {% if form %}
-    <form enctype="multipart/form-data" method="post" action="{{ form_url }}" class="add-to-catalog">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}"/>
-        {{ form.as_p }}
-        <p class="submit">
-            <input type="submit" value="{% trans 'Save' %}"/>
-        </p>
-    </form>
+    <div class="well">
+        <div class="page-header">
+            <h3>{% trans "Add to catalog" %}</h3>
+        </div>
+        <form id="catalog-item-form" enctype="multipart/form-data" method="post" action="{{ form_url }}">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}"/>
+            {{ form.as_p }}
+            <p>
+                <input type="submit" class="btn-success" value="{% trans 'Save' %}"/>
+            </p>
+        </form>
+    </div>
 {% endif %}
