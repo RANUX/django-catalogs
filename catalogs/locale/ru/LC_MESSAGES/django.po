@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-04 20:16+0400\n"
+"POT-Creation-Date: 2012-03-13 17:20+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%"
-"10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: models.py:41
 msgid "name"
@@ -24,15 +24,15 @@ msgstr "имя"
 
 #: models.py:42
 msgid "slug"
-msgstr "ЧПУ"
+msgstr "понятное URL"
 
 #: models.py:43
 msgid "hidden"
 msgstr "скрыт"
 
 #: models.py:44
-msgid "url"
-msgstr "url"
+msgid "redirect url"
+msgstr "url редиректа"
 
 #: models.py:45
 msgid "description"
@@ -70,10 +70,17 @@ msgstr "катало"
 msgid "catalogs"
 msgstr "каталоги"
 
-#: templates/catalogs/add_form.html:8
+#: templates/catalogs/add_form.html:5
+msgid "Add to catalog"
+msgstr "Добавить в каталог"
+
+#: templates/catalogs/add_form.html:12
 msgid "Save"
 msgstr "Сохранить"
 
 #: views/add.py:40
 msgid "Added to catalog."
-msgstr "Добавить в катало"
+msgstr "Добавить в каталог"
+
+#~ msgid "url"
+#~ msgstr "url"
