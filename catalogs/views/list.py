@@ -24,5 +24,5 @@ class CatalogListView(TemplateView):
             catalog_item = CatalogItem.objects.get(slug=slug, hidden=False)
 
         catalog_items = CatalogItem.objects.filter(parent=catalog_item, hidden=False)
-        return self.render_to_response({'catalog_items': catalog_items})
+        return self.render_to_response({'catalog': catalog_item , 'catalog_items': catalog_items})
 

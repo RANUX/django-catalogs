@@ -1,4 +1,8 @@
 {% extends "catalogs/base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans 'Catalog' %} {{ catalog.name }}{% endblock %}
+
 {% block content %}
 <ul class="thumbnails">
     {% for item in catalog_items %}
