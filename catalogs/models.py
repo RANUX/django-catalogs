@@ -48,7 +48,7 @@ class CatalogItem(models.Model):
 
     parent = models.ForeignKey('self', null=True, blank=True, default=None, related_name='children', verbose_name=_('parent catalog'))
     last_child = models.ForeignKey('self', null=True, blank=True, verbose_name=_('last child'))
-    path = models.TextField(_('path'), editable=False, db_index=True)
+    path = models.TextField(_('path'), editable=False)
 
     icon = ThumbnailerImageField(
         _('upload icon'),
