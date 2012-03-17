@@ -4,5 +4,5 @@ __author__ = 'Razzhivin Alexander'
 __email__ = 'admin@httpbots.com'
 
 
-VERSION = (1, 1, 0)
+VERSION = (1, 1, 1)
 __version__ = '.'.join((str(each) for each in VERSION[:4]))
