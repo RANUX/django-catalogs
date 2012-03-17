@@ -39,7 +39,7 @@ class CatalogItem(models.Model):
     content_object = generic.GenericForeignKey()
 
     name = models.CharField(_('name'), max_length=255)
-    slug = models.SlugField(_('slug'), unique=True, max_length=150)
+    slug = models.SlugField(_('slug'), max_length=150)
     hidden = models.BooleanField(_('hidden'), default=False)
     url = models.CharField(_('redirect url'), max_length=255, blank=True)
     description = models.TextField(_('description'), blank=True)
@@ -82,13 +82,13 @@ class CatalogItem(models.Model):
 
         path = self.slug
         if self.parent:
-            path = PATH_SEPARATOR.join((self.parent.path, path))
+            path = PATH_SEPARATOR.join((self.parent.path, self.slug))
 
             self.parent.last_child = self
-            CatalogItem.objects.filter(slug=self.parent_id).update(last_child=self)
+            CatalogItem.objects.filter(pk=self.parent_id).update(last_child=self)
 
         self.path = path
-        CatalogItem.objects.filter(slug=self.slug).update(path=self.path)
+        CatalogItem.objects.filter(pk=self.pk).update(path=self.path)
         self.store_icon_by_url()
 
     def set_object_id(self):

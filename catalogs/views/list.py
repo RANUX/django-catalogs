@@ -14,15 +14,17 @@ class CatalogListView(TemplateView):
 
     def get(self, request, *args, **kwargs):
         url = kwargs.get('url')
-        catalog_item = None
+        parent_catalog_item = None
 
         if url:
             if not url.endswith('/'):
                 return HttpResponseRedirect("%s/" % request.path)
 
-            slug = filter(None, url.split("/"))[-1]  # filter removes empty strings
-            catalog_item = CatalogItem.objects.get(slug=slug, hidden=False)
+            splited_url = filter(None, url.split("/"))
+            slug = splited_url[-1]
+            path = '/'.join(splited_url)
+            parent_catalog_item = CatalogItem.objects.filter(path=path, slug=slug, hidden=False)[0]
 
-        catalog_items = CatalogItem.objects.filter(parent=catalog_item, hidden=False)
-        return self.render_to_response({'catalog': catalog_item , 'catalog_items': catalog_items})
+        catalog_items = CatalogItem.objects.filter(parent=parent_catalog_item, hidden=False)
+        return self.render_to_response({'catalog': parent_catalog_item , 'catalog_items': catalog_items})
 

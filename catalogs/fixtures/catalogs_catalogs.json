@@ -110,5 +110,21 @@
             "last_child":null,
             "icon":""
         }
+    },
+    {
+        "pk":8,
+        "model":"catalogs.catalogitem",
+        "fields":{
+            "content_type": 12,
+            "object_id": 7,
+            "name":"seven",
+            "parent":1,
+            "hidden":false,
+            "slug":"seven",
+            "language_code":"en",
+            "path":"first/seven",
+            "last_child":null,
+            "icon":""
+        }
     }
 ]
