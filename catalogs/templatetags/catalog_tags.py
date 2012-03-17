@@ -20,7 +20,7 @@ def add_to_catalog_form(context, obj):
     The user must own ``catalogs.add_to_catalog permission`` to add
     videos.
     """
-    if context['user'].has_perm('catalogs.add_to_catalog'):
+    if context['user'].has_perm('catalogs.add_catalogitem'):
         catalog_item = CatalogItem.objects.get_object_catalog_item(obj)
         data = None
 
