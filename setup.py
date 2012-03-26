@@ -31,7 +31,7 @@ setup(name='django-catalogs',
     packages = find_packages(exclude=['test_project',]),
     include_package_data=True,
     install_requires = [
-        'django>=1.3',
+        'django==1.3',
         'easy-thumbnails',
         'django-model-utils ',
 

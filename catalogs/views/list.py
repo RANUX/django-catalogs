@@ -25,6 +25,6 @@ class CatalogListView(TemplateView):
             path = '/'.join(splited_url)
             parent_catalog_item = CatalogItem.objects.filter(path=path, slug=slug, hidden=False)[0]
 
-        catalog_items = CatalogItem.objects.filter(parent=parent_catalog_item, hidden=False)
+        catalog_items = CatalogItem.objects.filter(parent=parent_catalog_item, hidden=False).order_by('id')
         return self.render_to_response({'catalog': parent_catalog_item , 'catalog_items': catalog_items})
 
